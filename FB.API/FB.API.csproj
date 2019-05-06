@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FB.DAL\FB.DAL.csproj" />
     <ProjectReference Include="..\FB.SERVICES\FB.SERVICES.csproj" />
   </ItemGroup>
 
