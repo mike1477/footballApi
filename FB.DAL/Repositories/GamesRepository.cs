@@ -54,9 +54,13 @@ namespace FB.DAL.Repositories
 
         public GamesEntity GamesUpdate(int id, GamesEntity game)
         {
-            _context.Games.Update(game);
+            var entity = _context.Games.Find(id);
+            entity.Stadium = game.Stadium;
+            entity.TeamAway = game.TeamAway;
+            entity.TeamHome = game.TeamHome;
             _context.SaveChanges();
-            return game;
+
+            return entity;         
         }
     }
 }
