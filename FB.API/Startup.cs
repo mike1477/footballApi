@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FB.DAL.Repositories;
+using FB.DAL.Repositories.Interfaces;
 using FB.SERVICES;
 using FB.SERVICES.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +30,11 @@ namespace FB.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // Services
             services.AddTransient<IGamesService, GamesService>();
+
+            //Repositories
+            services.AddTransient<IGamesRepository, GamesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
