@@ -10,27 +10,39 @@ namespace FB.SERVICES
     {
         public GamesCreateResponseDTO GamesCreate(GamesCreateRequestDTO GamesCreateRequestDTO)
         {
-            throw new NotImplementedException();
+            return new GamesCreateResponseDTO
+            {
+                Test = "Hello World from GamesCreate method in service."
+            };
         }
 
         public bool GamesDelete(int id)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public GetAllResponseDTO GamesGetAll()
         {
-            throw new NotImplementedException();
+            return new GetAllResponseDTO
+            {
+                Test = "Hello World from GamesGetAll method in service."
+            };
         }
 
         public GamesGetByIdResponseDTO GamesGetById(int id)
         {
-            throw new NotImplementedException();
+            return new GamesGetByIdResponseDTO
+            {
+                Test = "Hello World from GamesGetById method in service."
+            };
         }
 
-        public GamesUpdateResponseDTO GamesUpdate(GamesUpdateRequestDTO GamesUpdateRequestDTO)
+        public GamesUpdateResponseDTO GamesUpdate(GamesUpdateRequestDTO gamesUpdateRequestDTO)
         {
-            throw new NotImplementedException();
+            return new GamesUpdateResponseDTO
+            {
+                Test = gamesUpdateRequestDTO.Test
+            };
         }
     }
 }

@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FB.SERVICES.DTOs;
+using FB.SERVICES.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FB.API.Controllers
@@ -10,36 +13,59 @@ namespace FB.API.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
+        public IGamesService _gamesService { get; }
+
+        public GamesController(IGamesService gamesService)
+        {
+            _gamesService = gamesService;
+        }
         // GET api/Games
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Get()
         {
-            return new string[] { "Game 1", "Game 2","Game 3"};
+            GetAllResponseDTO GetAllResponseDTOs = _gamesService.GamesGetAll();
+
+            return Ok(GetAllResponseDTOs);
         }
 
         // GET api/Games/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult Get(int id)
         {
-            return "Game";
+            GamesGetByIdResponseDTO gamesGetByIdResponseDTO = _gamesService.GamesGetById(id);
+
+            return Ok(gamesGetByIdResponseDTO);
         }
 
         // POST api/Games
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody]GamesCreateRequestDTO testService)
         {
+            GamesCreateResponseDTO GamesCreateResponseDTO = _gamesService.GamesCreate(testService);
+
+            return StatusCode(StatusCodes.Status201Created, GamesCreateResponseDTO);
         }
 
         // PUT api/Games/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] GamesUpdateRequestDTO testService)
         {
+            GamesUpdateResponseDTO gamesUpdateResponseDTO = _gamesService.GamesUpdate(testService);
+
+            return StatusCode(StatusCodes.Status201Created, gamesUpdateResponseDTO);
         }
 
         // DELETE api/Games/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            bool IsDeleted = _gamesService.GamesDelete(id);
+            if (IsDeleted)
+            {
+                return StatusCode(StatusCodes.Status200OK);
+            }
+
+            return StatusCode(StatusCodes.Status400BadRequest);
         }
     }
 }

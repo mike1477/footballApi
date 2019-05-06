@@ -6,5 +6,6 @@ namespace FB.SERVICES.DTOs
 {
     public class GamesUpdateResponseDTO
     {
+        public string Test { get; set; }
     }
 }
