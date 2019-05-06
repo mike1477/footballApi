@@ -13,8 +13,8 @@ namespace FB.DAL.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Team1 = table.Column<string>(nullable: true),
-                    Team2 = table.Column<string>(nullable: true),
+                    TeamHome = table.Column<string>(nullable: true),
+                    TeamAway = table.Column<string>(nullable: true),
                     Stadium = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

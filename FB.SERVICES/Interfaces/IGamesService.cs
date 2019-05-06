@@ -13,7 +13,7 @@ namespace FB.SERVICES.Interfaces
 
         GamesGetByIdResponseDTO GamesGetById(int id);
 
-        GamesUpdateResponseDTO GamesUpdate(GamesUpdateRequestDTO GamesUpdateRequestDTO);
+        GamesUpdateResponseDTO GamesUpdate(int id, GamesUpdateRequestDTO GamesUpdateRequestDTO);
 
         bool GamesDelete(int id);
     }

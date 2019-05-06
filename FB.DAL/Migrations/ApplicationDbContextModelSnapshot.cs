@@ -26,9 +26,9 @@ namespace FB.DAL.Migrations
 
                     b.Property<string>("Stadium");
 
-                    b.Property<string>("Team1");
+                    b.Property<string>("TeamAway");
 
-                    b.Property<string>("Team2");
+                    b.Property<string>("TeamHome");
 
                     b.HasKey("Id");
 

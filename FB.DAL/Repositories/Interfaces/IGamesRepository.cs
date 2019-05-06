@@ -14,7 +14,7 @@ namespace FB.DAL.Repositories.Interfaces
 
         GamesEntity GamesGetById(int id);
 
-        GamesEntity GamesUpdate(GamesEntity games);
+        GamesEntity GamesUpdate(int id, GamesEntity games);
 
         bool GamesDelete(int id);
     }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FB.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190506175428_init")]
+    [Migration("20190506183845_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,9 +28,9 @@ namespace FB.DAL.Migrations
 
                     b.Property<string>("Stadium");
 
-                    b.Property<string>("Team1");
+                    b.Property<string>("TeamAway");
 
-                    b.Property<string>("Team2");
+                    b.Property<string>("TeamHome");
 
                     b.HasKey("Id");
 

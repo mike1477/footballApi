@@ -19,20 +19,20 @@ namespace FB.SERVICES
 
         public IGamesRepository _gamesRepository { get; }
 
-        public GamesCreateResponseDTO GamesCreate(GamesCreateRequestDTO GamesCreateRequestDTO)
+        public GamesCreateResponseDTO GamesCreate(GamesCreateRequestDTO gamesCreateRequestDTO)
         {
             var gamesEntity = new GamesEntity
             {
-                Stadium = "stadium",
-                Team1  = "team1",
-                Team2 = "team2"
+                TeamAway = gamesCreateRequestDTO.TeamAway,
+                TeamHome = gamesCreateRequestDTO.TeamHome,
+                Stadium = gamesCreateRequestDTO.Stadium
             };
 
             GamesEntity gamesRepositoryResponse = _gamesRepository.GamesCreate(gamesEntity);
 
             return new GamesCreateResponseDTO
             {
-                Test = gamesRepositoryResponse.Stadium
+                ReturnedGame = gamesRepositoryResponse
             };
         }
 
@@ -47,7 +47,7 @@ namespace FB.SERVICES
 
             return new GetAllResponseDTO
             {
-                Test = "working"
+                AllGamesReturned = gamesGetAllRepositoryResponse
             };
         }
 
@@ -57,20 +57,24 @@ namespace FB.SERVICES
 
             return new GamesGetByIdResponseDTO
             {
-                Test = gameGetByIdRepositoryResponse.Stadium
+                GameReturned = gameGetByIdRepositoryResponse
             };
         }
 
-        public GamesUpdateResponseDTO GamesUpdate(GamesUpdateRequestDTO gamesUpdateRequestDTO)
+        public GamesUpdateResponseDTO GamesUpdate(int id, GamesUpdateRequestDTO gamesUpdateRequestDTO)
         {
-            //for testing
-            var gamesEntity = new GamesEntity();
+            var gamesEntity = new GamesEntity
+            {
+                TeamAway = gamesUpdateRequestDTO.TeamAway,
+                TeamHome = gamesUpdateRequestDTO.TeamHome,
+                Stadium = gamesUpdateRequestDTO.Stadium
+            };
 
-            GamesEntity gamesUpdatedRepositoryResponse = _gamesRepository.GamesUpdate(gamesEntity);
+            GamesEntity gamesUpdatedRepositoryResponse = _gamesRepository.GamesUpdate(id, gamesEntity);
 
             return new GamesUpdateResponseDTO
             {
-                Test = gamesUpdateRequestDTO.Test
+                GameUpdated = gamesUpdatedRepositoryResponse
             };
         }
     }

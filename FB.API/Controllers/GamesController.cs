@@ -50,7 +50,7 @@ namespace FB.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] GamesUpdateRequestDTO testService)
         {
-            GamesUpdateResponseDTO gamesUpdateResponseDTO = _gamesService.GamesUpdate(testService);
+            GamesUpdateResponseDTO gamesUpdateResponseDTO = _gamesService.GamesUpdate(id, testService);
 
             return StatusCode(StatusCodes.Status201Created, gamesUpdateResponseDTO);
         }

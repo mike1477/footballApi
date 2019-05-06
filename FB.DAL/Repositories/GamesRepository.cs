@@ -9,53 +9,54 @@ namespace FB.DAL.Repositories
 {
     public class GamesRepository : IGamesRepository
     {
-        public GamesEntity GamesCreate(GamesEntity games)
+        public GamesRepository()
         {
-            return games;
+
+        }
+        public GamesRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public ApplicationDbContext _context { get; }
+
+        public GamesEntity GamesCreate(GamesEntity game)
+        {
+            _context.Games.Add(game);
+            _context.SaveChanges();
+
+            return game;
         }
 
         public bool GamesDelete(int id)
         {
-            return true;
+            var gameToRemove = _context.Games.SingleOrDefault(x => x.Id == id); //returns a single item.
+
+            if (gameToRemove != null)
+            {
+                _context.Games.Remove(gameToRemove);
+                _context.SaveChanges();
+
+                return true;
+            }
+            return false;
         }
 
         public List<GamesEntity> GamesGetAll()
         {
-            // for testing repo connection with service.
-            var game = new GamesEntity
-            {
-                Stadium = "test",
-                Team1 = "test",
-                Team2 = "test"
-            };
-
-            var list = new List<GamesEntity>();
-
-            list.Add(game);
-
-            return list;
+            return _context.Games.ToList();
         }
 
         public GamesEntity GamesGetById(int id)
         {
-            // for testing repo connection with service.
-            return new GamesEntity
-            {
-                Stadium = "test",
-                Team1 = "test",
-                Team2 = "test"
-            };
+            return _context.Games.FirstOrDefault(game => game.Id == id);
         }
 
-        public GamesEntity GamesUpdate(GamesEntity games)
+        public GamesEntity GamesUpdate(int id, GamesEntity game)
         {
-            // for testing repo connection with service.
-            return new GamesEntity
-            {
-                Stadium = "test",
-                Team1 = "test",
-                Team2 = "test"
-            };
+            _context.Games.Update(game);
+            _context.SaveChanges();
+            return game;
         }
     }
 }
