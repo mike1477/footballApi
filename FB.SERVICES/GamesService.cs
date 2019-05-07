@@ -5,6 +5,7 @@ using FB.SERVICES.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FB.SERVICES
 {
@@ -41,9 +42,9 @@ namespace FB.SERVICES
             return _gamesRepository.GamesDelete(id);
         }
 
-        public GetAllResponseDTO GamesGetAll()
+        public async Task<GetAllResponseDTO> GamesGetAll()
         {
-            List<GamesEntity> gamesGetAllRepositoryResponse = _gamesRepository.GamesGetAll();
+            IEnumerable<GamesEntity> gamesGetAllRepositoryResponse = await _gamesRepository.GamesGetAll();
 
             return new GetAllResponseDTO
             {
@@ -51,9 +52,9 @@ namespace FB.SERVICES
             };
         }
 
-        public GamesGetByIdResponseDTO GamesGetById(int id)
+        public async Task<GamesGetByIdResponseDTO> GamesGetById(int id)
         {
-            GamesEntity gameGetByIdRepositoryResponse = _gamesRepository.GamesGetById(id);
+            GamesEntity gameGetByIdRepositoryResponse = await _gamesRepository.GamesGetById(id);
 
             return new GamesGetByIdResponseDTO
             {

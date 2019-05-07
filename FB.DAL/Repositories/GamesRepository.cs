@@ -1,5 +1,6 @@
 ﻿using FB.DAL.Entities;
 using FB.DAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,14 +43,16 @@ namespace FB.DAL.Repositories
             return false;
         }
 
-        public List<GamesEntity> GamesGetAll()
+        public async Task<IEnumerable<GamesEntity>> GamesGetAll()
         {
-            return _context.Games.ToList();
+            var games = await _context.Games.ToListAsync();
+            return games;
         }
 
-        public GamesEntity GamesGetById(int id)
+        public async Task<GamesEntity> GamesGetById(int id)
         {
-            return _context.Games.FirstOrDefault(game => game.Id == id);
+            var gameFromDatabase = await _context.Games.FirstOrDefaultAsync(game => game.Id == id);
+            return gameFromDatabase;
         }
 
         public GamesEntity GamesUpdate(int id, GamesEntity game)

@@ -26,18 +26,18 @@ namespace FB.API.Controllers
         }
         // GET api/Games
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            GetAllResponseDTO GetAllResponseDTOs = _gamesService.GamesGetAll();
+            GetAllResponseDTO GetAllResponseDTOs = await _gamesService.GamesGetAll();
 
             return Ok(GetAllResponseDTOs);
         }
 
         // GET api/Games/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            GamesGetByIdResponseDTO gamesGetByIdResponseDTO = _gamesService.GamesGetById(id);
+            GamesGetByIdResponseDTO gamesGetByIdResponseDTO = await _gamesService.GamesGetById(id);
 
             return Ok(gamesGetByIdResponseDTO);
         }

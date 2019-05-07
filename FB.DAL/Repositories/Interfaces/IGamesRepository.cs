@@ -10,9 +10,9 @@ namespace FB.DAL.Repositories.Interfaces
     {
         GamesEntity GamesCreate(GamesEntity games);
 
-        List<GamesEntity> GamesGetAll();
+        Task<IEnumerable<GamesEntity>> GamesGetAll();
 
-        GamesEntity GamesGetById(int id);
+        Task<GamesEntity> GamesGetById(int id);
 
         GamesEntity GamesUpdate(int id, GamesEntity games);
 

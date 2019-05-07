@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace FB.SERVICES.Interfaces
 {
@@ -9,9 +10,9 @@ namespace FB.SERVICES.Interfaces
     {
         GamesCreateResponseDTO GamesCreate(GamesCreateRequestDTO GamesCreateRequestDTO);
 
-        GetAllResponseDTO GamesGetAll();
+        Task<GetAllResponseDTO> GamesGetAll();
 
-        GamesGetByIdResponseDTO GamesGetById(int id);
+        Task<GamesGetByIdResponseDTO> GamesGetById(int id);
 
         GamesUpdateResponseDTO GamesUpdate(int id, GamesUpdateRequestDTO GamesUpdateRequestDTO);
 

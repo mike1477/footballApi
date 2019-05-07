@@ -7,6 +7,6 @@ namespace FB.SERVICES.DTOs
 {
     public class GetAllResponseDTO
     {
-        public List<GamesEntity> AllGamesReturned { get; set; }
+        public IEnumerable<GamesEntity> AllGamesReturned { get; set; }
     }
 }
